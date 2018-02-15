@@ -1,4 +1,4 @@
-# Vagrant box genration for WSO2 produts
+# Vagrant box genration for WSO2 products
 
 This section defines the procedure to build Vagrant boxes required for WSO2 Products
 
