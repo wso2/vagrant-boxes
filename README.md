@@ -6,9 +6,11 @@ Please note that in order to build these Vagrant boxes, you need to install
 [Oracle VM VirtualBox](http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html),
 as WSO2 Vagrant resources use Oracle VM VirtualBox, as the default provider.
 
-Virtualization should be enabled in the BIOS before building the boxes.
 ## How to build the Vagrant boxes
 
+### Prerequisites
+
+Virtualization should be enabled in the BIOS before building the boxes.
 
 ### Vagrant box build process
 
