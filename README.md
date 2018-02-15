@@ -26,7 +26,7 @@ i. WSO2 API Manager 2.1.0
 
 ii. WSO2 Enterprise Integrator 6.1.1
 
-[WSO2 Enterprise Integrator 6.1.1](https://wso2.com/integration#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and copy them to the following path.
+[WSO2 Enterprise Integrator 6.1.1](https://wso2.com/integration#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download). Copy them to the following path.
 
 iii. WSO2 Identity Server 5.4.1
 
