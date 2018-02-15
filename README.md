@@ -129,19 +129,19 @@ Stream Processor 4.0.0
 ```
 ---
 boxes:
-  -
-    output_box: mysql
-    base_box: ubuntu/trusty64
-    ip: 172.28.128.3
-    provisioner_script: mysql/provisioner/provisioner.sh
-  -
-   output_box: wso2sp
-   base_box: ubuntu/trusty64
-   ip: 172.28.128.4
-   provisioner_script: provisioner/provisioner.sh
-   provisioner_script_args:
-         - server: wso2sp
-         - version: 4.0.0
+	-
+		output_box: mysql
+		base_box: ubuntu/trusty64
+		ip: 172.28.128.3
+		provisioner_script: mysql/provisioner/provisioner.sh
+  	-
+		   output_box: wso2sp
+		   base_box: ubuntu/trusty64
+		   ip: 172.28.128.4
+		   provisioner_script: provisioner/provisioner.sh
+		   provisioner_script_args:
+			 - server: wso2sp
+			 - version: 4.0.0
 ```
 
 4. Execute the build.sh shell script.
