@@ -100,7 +100,7 @@ boxes:
 		ip: 172.28.128.4
 		provisioner_script: provisioner/provisioner.sh
 		provisioner_script_args:
-			- server: wso2am
+			- server: wso2is
 			- version: 5.4.1
 	-
 		output_box: wso2is-analytics
