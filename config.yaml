@@ -1,0 +1,69 @@
+# Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+boxes:
+  -
+    output_box: mysql
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.3
+    provisioner_script: mysql/provisioner/provisioner.sh
+  -
+    output_box: wso2am
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.4
+    provisioner_script: provisioner/provisioner.sh
+    provisioner_script_args:
+      - server: wso2am
+      - version: 2.1.0
+  -
+    output_box: wso2am-analytics
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.5
+    provisioner_script: provisioner/provisioner.sh
+    provisioner_script_args:
+      - server: wso2am-analytics
+      - version: 2.1.0
+  -
+    output_box: wso2ei
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.4
+    provisioner_script: provisioner/provisioner.sh
+    provisioner_script_args:
+      - server: wso2ei
+      - version: 6.1.1
+  -
+    output_box: wso2is
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.4
+    provisioner_script: provisioner/provisioner.sh
+    provisioner_script_args:
+      - server: wso2is
+      - version: 5.4.1
+  -
+    output_box: wso2is-analytics
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.5
+    provisioner_script: provisioner/provisioner.sh
+    provisioner_script_args:
+      - server: wso2is-analytics
+      - version: 5.4.1
+  -
+   output_box: wso2sp
+   base_box: ubuntu/trusty64
+   ip: 172.28.128.4
+   provisioner_script: base/provisioner/provisioner.sh
+   provisioner_script_args:
+         - server: wso2sp
+         - version: 4.0.0
