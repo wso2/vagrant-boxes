@@ -2,13 +2,13 @@
 
 This section defines the procedure to build Vagrant boxes required for WSO2 Products
 
-Please note that in order to build these Vagrant boxes, you need to install
-[Oracle VM VirtualBox](http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html),
-as WSO2 Vagrant resources use Oracle VM VirtualBox, as the default provider.
-
 ## How to build the Vagrant boxes
 
 ### Prerequisites
+
+Please note that in order to build these Vagrant boxes, you need to install
+[Oracle VM VirtualBox](http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html),
+as WSO2 Vagrant resources use Oracle VM VirtualBox, as the default provider.
 
 Virtualization should be enabled in the BIOS before building the boxes.
 
@@ -22,19 +22,22 @@ git clone https://github.com/wso2/vagrant-boxes.git
 
 2. Download
 
-i. WSO2 API Manager 2.1.0
+   i. [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download).
 
-[WSO2 API Manager 2.1.0](https://wso2.com/api-management/#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download). Copy them to the following path.
+   ii. WSO2 API Manager 2.1.0
 
-ii. WSO2 Enterprise Integrator 6.1.1
+[WSO2 API Manager 2.1.0](https://wso2.com/api-management/#download).
 
-[WSO2 Enterprise Integrator 6.1.1](https://wso2.com/integration#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download). Copy them to the following path.
+   iii. WSO2 Enterprise Integrator 6.1.1
 
-iii. WSO2 Identity Server 5.4.1
+[WSO2 Enterprise Integrator 6.1.1](https://wso2.com/integration#download).
 
- [WSO2 Identity Server 5.4.1](https://wso2.com/identity-and-access-management#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download). Copy them to the following path.
+   iv. WSO2 Identity Server 5.4.1
+
+ [WSO2 Identity Server 5.4.1](https://wso2.com/identity-and-access-management#download).
 
 Note: Adding WSO2 Update Manager is optional. Read more about [WSO2 Update Manager](https://wso2.com/wum/).
+   v. Copy them to the following path
 ```
 ~/files/
 ```
