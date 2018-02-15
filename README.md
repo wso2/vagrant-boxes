@@ -15,22 +15,22 @@ Virtualization should be enabled in the BIOS before building the boxes.
 
 1. Checkout this repository into your local machine using the following Git command.
 ```
-	git clone https://github.com/wso2/vagrant-boxes.git
+git clone https://github.com/wso2/vagrant-boxes.git
 ```
 
 2. Download
 
 WSO2 API Manager 2.1.0
 
-	[WSO2 API Manager 2.1.0](https://wso2.com/api-management/#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download). Copy them to the following path.
+[WSO2 API Manager 2.1.0](https://wso2.com/api-management/#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download). Copy them to the following path.
 
 WSO2 Enterprise Integrator 6.1.1
 
-	[WSO2 Enterprise Integrator 6.1.1](https://wso2.com/integration#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and copy them to the following path.
+[WSO2 Enterprise Integrator 6.1.1](https://wso2.com/integration#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and copy them to the following path.
 
 WSO2 Identity Server 5.4.1
 
-  [WSO2 Identity Server 5.4.1](https://wso2.com/identity-and-access-management#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download). Copy them to the following path.
+ [WSO2 Identity Server 5.4.1](https://wso2.com/identity-and-access-management#download), [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download). Copy them to the following path.
 
 Note: Adding WSO2 Update Manager is optional. Read more about [WSO2 Update Manager](https://wso2.com/wum/).
 ```
