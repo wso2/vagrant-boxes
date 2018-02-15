@@ -19,6 +19,7 @@ Virtualization should be enabled in the BIOS before building the boxes.
 ```
 git clone https://github.com/wso2/vagrant-boxes.git
 ```
+The local copy of the `vagrant-boxes` directory will be referred to as `VAGARNT-BOXES_HOME` from this point onwards.
 
 2. Download
 
@@ -28,25 +29,25 @@ git clone https://github.com/wso2/vagrant-boxes.git
 
    ii. WSO2 API Manager 2.1.0
 
-	[WSO2 API Manager 2.1.0](https://wso2.com/api-management/#download).
+      [WSO2 API Manager 2.1.0](https://wso2.com/api-management/#download).
 
    iii. WSO2 Enterprise Integrator 6.1.1
 
-	[WSO2 Enterprise Integrator 6.1.1](https://wso2.com/integration#download).
+      [WSO2 Enterprise Integrator 6.1.1](https://wso2.com/integration#download).
 
    iv. WSO2 Identity Server 5.4.1
 
- 	[WSO2 Identity Server 5.4.1](https://wso2.com/identity-and-access-management#download).
-
-Note: Adding WSO2 Update Manager is optional. Read more about [WSO2 Update Manager](https://wso2.com/wum/).
+      [WSO2 Identity Server 5.4.1](https://wso2.com/identity-and-access-management#download).
 
    iv. Stream Processor 4.0.0
 
-  [WSO2 Stream Processor 4.0.0](https://wso2.com/analytics#download).
+      [WSO2 Stream Processor 4.0.0](https://wso2.com/analytics#download).
+  
+  Note: Adding WSO2 Update Manager is optional. Read more about [WSO2 Update Manager](https://wso2.com/wum/).
 
    vi. Copy them to the following path
 ```
-~/files/
+<VAGARNT-BOXES_HOME>/files/
 ```
 3. Edit the config.yaml as required (Comment out the unnecessary box entries).
 
