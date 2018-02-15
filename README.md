@@ -42,10 +42,11 @@ The local copy of the `vagrant-boxes` directory will be referred to as `VAGARNT-
    iv. Stream Processor 4.0.0
 
       [WSO2 Stream Processor 4.0.0](https://wso2.com/analytics#download).
-  
-  Note: Adding WSO2 Update Manager is optional. Read more about [WSO2 Update Manager](https://wso2.com/wum/).
 
    vi. Copy them to the following path
+   
+Note: Adding WSO2 Update Manager is optional. Read more about [WSO2 Update Manager](https://wso2.com/wum/).
+
 ```
 <VAGARNT-BOXES_HOME>/files/
 ```
