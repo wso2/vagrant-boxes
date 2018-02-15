@@ -1,3 +1,6 @@
+#!/bin/bash
+
+# ------------------------------------------------------------------------
 # Copyright 2018 WSO2, Inc. (http://wso2.com)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,19 +14,22 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License
+# ------------------------------------------------------------------------
 
-#!/bin/bash
+# This script acts as the machine provisioner during the Vagrant box build process for WSO2 Identity Server.
 
+# set variables
 WSO2_SERVER=$1
 WSO2_SERVER_VERSION=$2
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.zip
 JDK_ARCHIVE=jdk-8u*-linux-x64.tar.gz
 MYSQL_CONNECTOR=mysql-connector-java-5.1.*-bin.jar
+WUM_ARCHIVE=wum-1.0-linux-x64.tar.gz
 DEFAULT_MOUNT=/vagrant
 SOFTWARE_DISTRIBUTIONS=${DEFAULT_MOUNT}/files
-CONFIGURATIONS=${DEFAULT_MOUNT}/identity-server/confs
 WORKING_DIRECTORY=/home/vagrant
 JAVA_HOME=/opt/java
+WUM_HOME=/usr/local
 DEFAULT_USER=vagrant
 
 # operate in anti-fronted mode with no user interaction
@@ -45,30 +51,39 @@ if [ ! -f ${SOFTWARE_DISTRIBUTIONS}/${MYSQL_CONNECTOR} ]; then
     exit 1
 fi
 
-echo "Starting the ${WSO2_SERVER}-${WSO2_SERVER_VERSION} Vagrant box build process..."
+echo "Starting the ${WSO2_SERVER}-${WSO2_SERVER_VERSION} Vagrant box build process."
 
 # install utility software
-echo "Installing software utilities..."
+echo "Installing software utilities."
 apt-get install unzip
-echo "Successfully installed software utilities"
+echo "Successfully installed software utilities."
 
 # set up Java
-echo "Setting up Java..."
+echo "Setting up Java."
 if test ! -d ${JAVA_HOME}; then mkdir ${JAVA_HOME}; fi
 if test -d ${JAVA_HOME}; then
   tar -xf ${SOFTWARE_DISTRIBUTIONS}/${JDK_ARCHIVE} -C ${JAVA_HOME} --strip-components=1
+  echo "Successfully set up Java."
+else
+  echo "Setting up Java failed."
+  exit 1
 fi
-echo "Successfully set up Java"
+
+# set up wum
+echo "Setting up WUM."
+if test ! -d ${WUM_HOME}; then mkdir ${WUM_HOME}; fi
+if test -d ${WUM_HOME}; then
+  tar -xf ${SOFTWARE_DISTRIBUTIONS}/${WUM_ARCHIVE} -C ${WUM_HOME} --strip-components=1
+  echo "Successfully set up WUM."
+fi
 
 # moving the WSO2 product pack to the working directory
-echo "Moving the ${WSO2_SERVER_PACK} to the directory: ${WORKING_DIRECTORY}..."
-if test ! -d ${WSO2_SERVER}-${WSO2_SERVER_VERSION}; then
-  mv ${SOFTWARE_DISTRIBUTIONS}/${WSO2_SERVER_PACK} ${WORKING_DIRECTORY}
-  echo "Successfully moved ${WSO2_SERVER_PACK} to ${WORKING_DIRECTORY}"
-fi
+echo "Moving the ${WSO2_SERVER_PACK} to the directory: ${WORKING_DIRECTORY}."
+mv ${SOFTWARE_DISTRIBUTIONS}/${WSO2_SERVER_PACK} ${WORKING_DIRECTORY}
+echo "Successfully moved ${WSO2_SERVER_PACK} to ${WORKING_DIRECTORY}."
 
-# add the MySQL driver
-echo "Copying the MySQL driver to the ${WORKING_DIRECTORY}"
+# copying the MySQL driver
+echo "Copying the MySQL driver to the ${WORKING_DIRECTORY}."
 cp ${SOFTWARE_DISTRIBUTIONS}/${MYSQL_CONNECTOR} ${WORKING_DIRECTORY}
 echo "Successfully copied the MySQL driver to the server pack."
 
@@ -79,9 +94,9 @@ chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${WORKING_DIRECTORY}
 apt-get clean
 if [ "$?" -eq "0" ];
 then
-  echo "Successfully removed APT cache"
+  echo "Successfully removed APT cache."
 else
-  echo "Failed to remove APT cache"
+  echo "Failed to remove APT cache."
 fi
 
 # zero out the drive

@@ -36,11 +36,87 @@ Note: Adding WSO2 Update Manager is optional. Read more about [WSO2 Update Manag
 ```
 	~/files/
 ```
-3. Execute the build.sh shell script.
+3. Edit the config.yaml as required (Comment out the unnecessary box entries).
+
+WSO2 API Manager 2.1.0
+```
+---
+boxes:
+	-
+		output_box: mysql
+		base_box: ubuntu/trusty64
+		ip: 172.28.128.3
+		provisioner_script: mysql/provisioner/provisioner.sh
+
+	-
+		output_box: wso2am
+		base_box: ubuntu/trusty64
+		ip: 172.28.128.4
+		provisioner_script: provisioner/provisioner.sh
+		provisioner_script_args:
+			- server: wso2am
+			- version: 2.1.0
+	-
+		output_box: wso2am-analytics
+		base_box: ubuntu/trusty64
+		ip: 172.28.128.5
+		provisioner_script: provisioner/provisioner.sh
+		provisioner_script_args:
+			- server: wso2am-analytics
+			- version: 2.1.0
+```
+WSO2 Enterprise Integrator 6.1.1
+```
+---
+boxes:
+	-
+		output_box: mysql
+		base_box: ubuntu/trusty64
+		ip: 172.28.128.3
+		provisioner_script: mysql/provisioner/provisioner.sh
+
+	-
+		output_box: wso2ei
+		base_box: ubuntu/trusty64
+		ip: 172.28.128.4
+		provisioner_script: provisioner/provisioner.sh
+		provisioner_script_args:
+			- server: wso2ei
+			- version: 6.1.1
+```
+WSO2 Identity Server 5.4.1
+```
+---
+boxes:
+	-
+		output_box: mysql
+		base_box: ubuntu/trusty64
+		ip: 172.28.128.3
+		provisioner_script: mysql/provisioner/provisioner.sh
+
+	-
+		output_box: wso2is
+		base_box: ubuntu/trusty64
+		ip: 172.28.128.4
+		provisioner_script: provisioner/provisioner.sh
+		provisioner_script_args:
+			- server: wso2am
+			- version: 5.4.1
+	-
+		output_box: wso2is-analytics
+		base_box: ubuntu/trusty64
+		ip: 172.28.128.5
+		provisioner_script: provisioner/provisioner.sh
+		provisioner_script_args:
+			- server: wso2is-analytics
+			- version: 5.4.1
+```
+
+4. Execute the build.sh shell script.
 ```
 	./build.sh
 ```
-4. Add created box files to local Vagrant box cache.
+5. Add created box files to local Vagrant box cache.
 
 The created box files can be found in the output directory. In order to add a created box to the local Vagrant box cache use the `vagrant box add` command.
 

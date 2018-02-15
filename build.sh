@@ -24,8 +24,6 @@ vagrant up
 # load box names from definitions
 OUTPUT=$(ruby box_definitions.rb)
 
-echo $OUTPUT
-
 # loop through all defined box names and create box files
 for box in ${OUTPUT}
 do
