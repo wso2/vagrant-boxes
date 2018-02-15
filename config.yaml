@@ -59,3 +59,11 @@ boxes:
     provisioner_script_args:
       - server: wso2is-analytics
       - version: 5.4.1
+  -
+   output_box: wso2sp
+   base_box: ubuntu/trusty64
+   ip: 172.28.128.4
+   provisioner_script: base/provisioner/provisioner.sh
+   provisioner_script_args:
+         - server: wso2sp
+         - version: 4.0.0

@@ -23,7 +23,7 @@ git clone https://github.com/wso2/vagrant-boxes.git
 2. Download
 
    i. JDK, MySQL Connector, WSO2 Update Manager
-   
+
       [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download).
 
    ii. WSO2 API Manager 2.1.0
@@ -39,7 +39,12 @@ git clone https://github.com/wso2/vagrant-boxes.git
  	[WSO2 Identity Server 5.4.1](https://wso2.com/identity-and-access-management#download).
 
 Note: Adding WSO2 Update Manager is optional. Read more about [WSO2 Update Manager](https://wso2.com/wum/).
-   v. Copy them to the following path
+
+   iv. Stream Processor 4.0.0
+
+  [WSO2 Stream Processor 4.0.0](https://wso2.com/analytics#download).
+
+   vi. Copy them to the following path
 ```
 ~/files/
 ```
@@ -117,6 +122,24 @@ boxes:
 		provisioner_script_args:
 			- server: wso2is-analytics
 			- version: 5.4.1
+```
+Stream Processor 4.0.0
+```
+---
+boxes:
+  -
+    output_box: mysql
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.3
+    provisioner_script: mysql/provisioner/provisioner.sh
+  -
+   output_box: wso2sp
+   base_box: ubuntu/trusty64
+   ip: 172.28.128.4
+   provisioner_script: provisioner/provisioner.sh
+   provisioner_script_args:
+         - server: wso2sp
+         - version: 4.0.0
 ```
 
 4. Execute the build.sh shell script.
