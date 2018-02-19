@@ -24,8 +24,6 @@ WUM_ARCHIVE=wum-1.0-linux-x64.tar.gz
 DEFAULT_MOUNT=/vagrant
 SOFTWARE_DISTRIBUTIONS=${DEFAULT_MOUNT}/files
 WORKING_DIRECTORY=/home/vagrant
-JAVA_HOME=/opt/java
-WUM_HOME=/usr/local
 DEFAULT_USER=vagrant
 
 
@@ -64,25 +62,15 @@ then
 else
   echo "Failed to install software utilities"
 fi
+# moving Java
+echo "Moving the ${JDK_ARCHIVE} to the directory: ${WORKING_DIRECTORY}."
+mv ${SOFTWARE_DISTRIBUTIONS}/${JDK_ARCHIVE} ${WORKING_DIRECTORY}
+echo "Successfully moved ${JDK_ARCHIVE} to ${WORKING_DIRECTORY}."
 
-# set up Java
-echo "Setting up Java..."
-if test ! -d ${JAVA_HOME}; then mkdir ${JAVA_HOME}; fi
-if test -d ${JAVA_HOME}; then
-  tar -xf ${SOFTWARE_DISTRIBUTIONS}/${JDK_ARCHIVE} -C ${JAVA_HOME} --strip-components=1
-  echo "Successfully set up Java"
-else
-  echo "Setting up Java failed."
-  exit 1
-fi
-
-# set up wum
-echo "Setting up WUM."
-if test ! -d ${WUM_HOME}; then mkdir ${WUM_HOME}; fi
-if test -d ${WUM_HOME}; then
-  tar -xf ${SOFTWARE_DISTRIBUTIONS}/${WUM_ARCHIVE} -C ${WUM_HOME} --strip-components=1
-  echo "Successfully set up WUM."
-fi
+# moving WUM
+echo "Moving the ${WUM_ARCHIVE} to the directory: ${WORKING_DIRECTORY}."
+mv ${SOFTWARE_DISTRIBUTIONS}/${WUM_ARCHIVE} ${WORKING_DIRECTORY}
+echo "Successfully moved ${WUM_ARCHIVE} to ${WORKING_DIRECTORY}."
 
 # moving the WSO2 product pack to the working directory
 echo "Moving the ${WSO2_SERVER_PACK} to the directory: ${WORKING_DIRECTORY}."

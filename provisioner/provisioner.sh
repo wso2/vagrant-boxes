@@ -58,24 +58,15 @@ echo "Installing software utilities."
 apt-get install unzip
 echo "Successfully installed software utilities."
 
-# set up Java
-echo "Setting up Java."
-if test ! -d ${JAVA_HOME}; then mkdir ${JAVA_HOME}; fi
-if test -d ${JAVA_HOME}; then
-  tar -xf ${SOFTWARE_DISTRIBUTIONS}/${JDK_ARCHIVE} -C ${JAVA_HOME} --strip-components=1
-  echo "Successfully set up Java."
-else
-  echo "Setting up Java failed."
-  exit 1
-fi
+# moving Java
+echo "Moving the ${JDK_ARCHIVE} to the directory: ${WORKING_DIRECTORY}."
+mv ${SOFTWARE_DISTRIBUTIONS}/${JDK_ARCHIVE} ${WORKING_DIRECTORY}
+echo "Successfully moved ${JDK_ARCHIVE} to ${WORKING_DIRECTORY}."
 
-# set up wum
-echo "Setting up WUM."
-if test ! -d ${WUM_HOME}; then mkdir ${WUM_HOME}; fi
-if test -d ${WUM_HOME}; then
-  tar -xf ${SOFTWARE_DISTRIBUTIONS}/${WUM_ARCHIVE} -C ${WUM_HOME} --strip-components=1
-  echo "Successfully set up WUM."
-fi
+# moving WUM
+echo "Moving the ${WUM_ARCHIVE} to the directory: ${WORKING_DIRECTORY}."
+mv ${SOFTWARE_DISTRIBUTIONS}/${WUM_ARCHIVE} ${WORKING_DIRECTORY}
+echo "Successfully moved ${WUM_ARCHIVE} to ${WORKING_DIRECTORY}."
 
 # moving the WSO2 product pack to the working directory
 echo "Moving the ${WSO2_SERVER_PACK} to the directory: ${WORKING_DIRECTORY}."
