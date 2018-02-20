@@ -28,6 +28,7 @@ OUTPUT=$(ruby box_definitions.rb)
 for box in ${OUTPUT}
 do
     vagrant package $box --output output/$box.box
+    vagrant destroy $box -f
+    scp -i /home/wso2/vagrant-boxes/vagrantbox.pem -r /home/wso2/vagrant-boxes/output/$box.box ubuntu@34.236.22.181:/data/vagrant/boxes/
+    rm -rf $box.box
 done
-
-vagrant destroy -f

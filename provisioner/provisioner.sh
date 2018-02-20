@@ -91,8 +91,8 @@ else
 fi
 
 # zero out the drive
-dd if=/dev/zero of=/EMPTY bs=1M
-rm -f /EMPTY
+#dd if=/dev/zero of=/EMPTY bs=1M
+#rm -f /EMPTY
 
 # clear the bash history and exit
 cat /dev/null > ${WORKING_DIRECTORY}/.bash_history && history -c
