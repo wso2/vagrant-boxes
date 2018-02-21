@@ -55,16 +55,13 @@ Vagrant.configure("2") do |config|
       end
 
       # add the resources to the boxes
-      if box['resources_needed']
+      if box['resources']
         server_config.vm.provision "file", source: jdk, destination: destination
         server_config.vm.provision "file", source: mysql, destination: destination
         server_config.vm.provision "file", source: wum, destination: destination
-        box['resources_needed'].each do |resources|
-          # puts resources
-          resources.each do |resource|
-            source = files_path + resource
-            server_config.vm.provision "file", source: source, destination: destination
-          end
+        box['resources'].each do |resource|
+          source = files_path + resource
+          server_config.vm.provision "file", source: source, destination: destination
         end
       else
         # if no argument(s) have been defined to be passed to the shell script
