@@ -56,43 +56,39 @@ WSO2 API Manager 2.1.0
 ```
 ---
 boxes:
--
-  output_box: mysql
-  base_box: ubuntu/trusty64
-  ip: 172.28.128.3
-  provisioner_script: mysql-provisioner/provisioner.sh
--
-  output_box: wso2am
-  base_box: ubuntu/trusty64
-  ip: 172.28.128.4
-  resources_needed:
-    -
+  -
+    output_box: mysql
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.3
+    provisioner_script: mysql-provisioner/provisioner.sh
+  -
+    output_box: wso2am
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.4
+    resources:
       - wso2am-2.1.0.zip
--
-  output_box: wso2am-analytics
-  base_box: ubuntu/trusty64
-  ip: 172.28.128.5
-  resources_needed:
-    -
+  -
+    output_box: wso2am-analytics
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.5
+    resources:
       - wso2am-analytics-2.1.0.zip
 ```
 WSO2 Enterprise Integrator 6.1.1
 ```
 ---
 boxes:
--
-  output_box: mysql
-  base_box: ubuntu/trusty64
-  ip: 172.28.128.3
-  provisioner_script: mysql-provisioner/provisioner.sh
-
+  -
+    output_box: mysql
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.3
+    provisioner_script: mysql-provisioner/provisioner.sh
   -
     output_box: wso2ei
     base_box: ubuntu/trusty64
     ip: 172.28.128.4
-    resources_needed:
-      -
-        - wso2ei-6.1.1.zip
+    resources:
+      - wso2ei-6.1.1.zi
 ```
 WSO2 Identity Server 5.4.1
 ```
@@ -107,16 +103,14 @@ boxes:
     output_box: wso2is
     base_box: ubuntu/trusty64
     ip: 172.28.128.4
-    resources_needed:
-      -
-        - wso2is-5.4.1.zip
+    resources:
+      - wso2is-5.4.1.zip
   -
     output_box: wso2is-analytics
     base_box: ubuntu/trusty64
     ip: 172.28.128.5
-    resources_needed:
-      -
-        - wso2is-analytics-5.4.1.zip
+    resources:
+      - wso2is-analytics-5.4.1.zip
 ```
 Stream Processor 4.0.0
 ```
@@ -127,20 +121,19 @@ boxes:
     base_box: ubuntu/trusty64
     ip: 172.28.128.3
     provisioner_script: mysql-provisioner/provisioner.sh
-    -
-     output_box: wso2sp
-     base_box: ubuntu/trusty64
-     ip: 172.28.128.4
-     resources_needed:
-       -
-           - wso2sp-4.0.0.zip
-           - kafka_2.11_0.10.0.0_1.0.0.jar
-           - kafka_clients_0.10.0.0_1.0.0.jar
-           - metrics_core_2.2.0_1.0.0.jar
-           - scala_library_2.11.8_1.0.0.jar
-           - scala_parser_combinators_2.11_1.0.4_1.0.0.jar
-           - zkclient_0.8_1.0.0.jar
-           - zookeeper_3.4.6_1.0.0.jar
+  -
+    output_box: wso2sp
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.4
+    resources:
+      - wso2sp-4.0.0.zip
+      - kafka_2.11_0.10.0.0_1.0.0.jar
+      - kafka_clients_0.10.0.0_1.0.0.jar
+      - metrics_core_2.2.0_1.0.0.jar
+      - scala_library_2.11.8_1.0.0.jar
+      - scala_parser_combinators_2.11_1.0.4_1.0.0.jar
+      - zkclient_0.8_1.0.0.jar
+      - zookeeper_3.4.6_1.0.0.jar
 ```
 
 4. Run the Vagrantfile.
