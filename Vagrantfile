@@ -24,7 +24,6 @@ files_path = "./files/"
 jdk = files_path + "jdk-8u144-linux-x64.tar.gz"
 mysql = files_path + "mysql-connector-java-5.1.45-bin.jar"
 wum = files_path + "wum-1.0-linux-x64.tar.gz"
-boxnames=Array.new
 
 CONFIGURATIONS = YAML.load_file('config.yaml')
 
