@@ -15,15 +15,16 @@
 require 'yaml'
 require 'fileutils'
 
+DEFAULT_MOUNT = "/home/vagrant"
+FILES_PATH = "./files/"
+JDK_ARCHIVE = FILES_PATH + "jdk-8u144-linux-x64.tar.gz"
+MYSQL_CONNECTOR = FILES_PATH + "mysql-connector-java-5.1.45-bin.jar"
+WUM_ARCHIVE = FILES_PATH + "wum-1.0-linux-x64.tar.gz"
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
-destination = "/home/vagrant"
-files_path = "./files/"
-jdk = files_path + "jdk-8u144-linux-x64.tar.gz"
-mysql = files_path + "mysql-connector-java-5.1.45-bin.jar"
-wum = files_path + "wum-1.0-linux-x64.tar.gz"
 
 CONFIGURATIONS = YAML.load_file('config.yaml')
 
@@ -56,12 +57,12 @@ Vagrant.configure("2") do |config|
 
       # add the resources to the boxes
       if box['resources']
-        server_config.vm.provision "file", source: jdk, destination: destination
-        server_config.vm.provision "file", source: mysql, destination: destination
-        server_config.vm.provision "file", source: wum, destination: destination
+        server_config.vm.provision "file", source: JDK_ARCHIVE, destination: DEFAULT_MOUNT
+        server_config.vm.provision "file", source: MYSQL_CONNECTOR, destination: DEFAULT_MOUNT
+        server_config.vm.provision "file", source: WUM_ARCHIVE, destination: DEFAULT_MOUNT
         box['resources'].each do |resource|
-          source = files_path + resource
-          server_config.vm.provision "file", source: source, destination: destination
+          source = FILES_PATH + resource
+          server_config.vm.provision "file", source: source, destination: DEFAULT_MOUNT
         end
       else
         # if no argument(s) have been defined to be passed to the shell script
