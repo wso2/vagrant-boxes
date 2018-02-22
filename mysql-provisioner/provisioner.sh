@@ -48,9 +48,5 @@ service mysql restart
 # remove the APT cache
 apt-get clean
 
-# zero out the drive
-dd if=/dev/zero of=/EMPTY bs=1M
-rm -f /EMPTY
-
 # clear the bash history and exit
 cat /dev/null > ${WORKING_DIRECTORY}/.bash_history && history -c

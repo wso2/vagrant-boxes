@@ -15,42 +15,55 @@
 require 'yaml'
 require 'fileutils'
 
+DEFAULT_MOUNT = "/home/vagrant"
+FILES_PATH = "./files/"
+JDK_ARCHIVE = FILES_PATH + "jdk-8u144-linux-x64.tar.gz"
+MYSQL_CONNECTOR = FILES_PATH + "mysql-connector-java-5.1.45-bin.jar"
+WUM_ARCHIVE = FILES_PATH + "wum-1.0-linux-x64.tar.gz"
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
+
 CONFIGURATIONS = YAML.load_file('config.yaml')
 
 Vagrant.configure("2") do |config|
   # going through each server configuratioin specification
   CONFIGURATIONS['boxes'].each do |box|
-  # define the vm configuration
-  config.vm.define box['output_box'] do |server_config|
-    # define the base vagrant box to be used
-    server_config.vm.box = box['base_box']
-    # define the host name
-    server_config.vm.host_name = box['output_box']
+    # define the vm configuration
+    config.vm.define box['output_box'] do |server_config|
+      # Diasbling the synched folder
+      server_config.vm.synced_folder ".", "/vagrant", disabled: true
 
-    # set the network configurations for the vm
-    server_config.vm.network :private_network,ip: box['ip']
-    memory = 2048
-    cpu = 1
+      # define the base vagrant box to be used
+      server_config.vm.box = box['base_box']
+      # define the host name
+      server_config.vm.host_name = box['output_box']
 
-    server_config.vm.provider :virtualbox do |vb|
-      vb.name = box['output_box_name']
-      vb.check_guest_additions = false
-      vb.functional_vboxsf = false
-      vb.gui = false
-      vb.customize ['modifyvm', :id, '--memory', memory]
-      vb.customize ['modifyvm', :id, '--cpus', cpu]
-    end
+      # set the network configurations for the vm
+      server_config.vm.network :private_network,ip: box['ip']
+      memory = 2048
+      cpu = 1
 
-    # configure shell provisioner
-      if box['provisioner_script_args']
-        # if argument(s) have been defined to be passed to the shell script
-        server = box['provisioner_script_args'][0]['server']
-        version = box['provisioner_script_args'][1]['version']
-        server_config.vm.provision "shell", path: box["provisioner_script"], args: [server, version]
+      server_config.vm.provider :virtualbox do |vb|
+        vb.name = box['output_box_name']
+        vb.check_guest_additions = false
+        vb.functional_vboxsf = false
+        vb.gui = false
+        vb.customize ['modifyvm', :id, '--memory', memory]
+        vb.customize ['modifyvm', :id, '--cpus', cpu]
+      end
+
+      # add the resources to the boxes
+      if box['resources']
+        server_config.vm.provision "file", source: JDK_ARCHIVE, destination: DEFAULT_MOUNT
+        server_config.vm.provision "file", source: MYSQL_CONNECTOR, destination: DEFAULT_MOUNT
+        server_config.vm.provision "file", source: WUM_ARCHIVE, destination: DEFAULT_MOUNT
+        box['resources'].each do |resource|
+          source = FILES_PATH + resource
+          server_config.vm.provision "file", source: source, destination: DEFAULT_MOUNT
+        end
       else
         # if no argument(s) have been defined to be passed to the shell script
         server_config.vm.provision "shell", path: box["provisioner_script"]
