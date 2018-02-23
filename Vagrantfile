@@ -15,11 +15,11 @@
 require 'yaml'
 require 'fileutils'
 
-DEFAULT_MOUNT = "/home/vagrant"
 FILES_PATH = "./files/"
-JDK_ARCHIVE = FILES_PATH + "jdk-8u144-linux-x64.tar.gz"
-MYSQL_CONNECTOR = FILES_PATH + "mysql-connector-java-5.1.45-bin.jar"
-WUM_ARCHIVE = FILES_PATH + "wum-1.0-linux-x64.tar.gz"
+JDK_ARCHIVE = "jdk-8u144-linux-x64.tar.gz"
+MYSQL_CONNECTOR = "mysql-connector-java-5.1.45-bin.jar"
+WUM_ARCHIVE = "wum-1.0-linux-x64.tar.gz"
+DEFAULT_MOUNT = "/home/vagrant/"
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -33,13 +33,13 @@ Vagrant.configure("2") do |config|
   CONFIGURATIONS['boxes'].each do |box|
     # define the vm configuration
     config.vm.define box['output_box'] do |server_config|
-      # Diasbling the synched folder
-      server_config.vm.synced_folder ".", "/vagrant", disabled: true
-
       # define the base vagrant box to be used
       server_config.vm.box = box['base_box']
       # define the host name
       server_config.vm.host_name = box['output_box']
+
+      # Diasbling the synched folder
+      server_config.vm.synced_folder ".", "/vagrant", disabled: true
 
       # set the network configurations for the vm
       server_config.vm.network :private_network,ip: box['ip']
@@ -57,12 +57,12 @@ Vagrant.configure("2") do |config|
 
       # add the resources to the boxes
       if box['resources']
-        server_config.vm.provision "file", source: JDK_ARCHIVE, destination: DEFAULT_MOUNT
-        server_config.vm.provision "file", source: MYSQL_CONNECTOR, destination: DEFAULT_MOUNT
-        server_config.vm.provision "file", source: WUM_ARCHIVE, destination: DEFAULT_MOUNT
+        server_config.vm.provision "file", source: FILES_PATH + JDK_ARCHIVE, destination: DEFAULT_MOUNT + JDK_ARCHIVE
+        server_config.vm.provision "file", source: FILES_PATH + MYSQL_CONNECTOR, destination: DEFAULT_MOUNT + MYSQL_CONNECTOR
+        server_config.vm.provision "file", source: FILES_PATH + WUM_ARCHIVE, destination: DEFAULT_MOUNT + WUM_ARCHIVE
         box['resources'].each do |resource|
           source = FILES_PATH + resource
-          server_config.vm.provision "file", source: source, destination: DEFAULT_MOUNT
+          server_config.vm.provision "file", source: source, destination: DEFAULT_MOUNT + resource
         end
       else
         # if no argument(s) have been defined to be passed to the shell script
