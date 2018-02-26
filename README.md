@@ -73,6 +73,12 @@ boxes:
     ip: 172.28.128.5
     resources:
       - wso2am-analytics-2.1.0.zip
+  -
+    output_box: wso2is-as-km
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.6
+    resources:
+      - wso2is-km-5.3.0.zip
 ```
 WSO2 Enterprise Integrator 6.1.1
 ```
