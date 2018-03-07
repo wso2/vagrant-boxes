@@ -14,7 +14,6 @@
 
 require 'yaml'
 require 'fileutils'
-require 'uri'
 
 $stdout.print "username: "
 USERNAME = $stdin.gets.chomp
