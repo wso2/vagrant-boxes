@@ -29,7 +29,7 @@ WUM_ARCHIVE=wum-1.0-linux-x64.tar.gz
 WORKING_DIRECTORY=/home/vagrant
 WUM_HOME=/usr/local/
 WUM_PATH='PATH=$PATH:/usr/local/wum/bin'
-WUM_PRODUCT_LOCATION=/root/.wum-wso2/products/${WSO2_SERVER}/${WSO2_SERVER_VERSION}/
+WUM_PRODUCT_LOCATION=/root/.wum-wso2/products/${WSO2_SERVER}/${WSO2_SERVER_VERSION}
 
 
 # operate in anti-fronted mode with no user interaction
@@ -62,6 +62,8 @@ wum add --file ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 wum update
 mv ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 rm -rf /root/.wum-wso2/congif.yaml
+rm -rf /root/.wum-wso2/updates
+rm -rf ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_PACK}
 
 # set ownership of the working directory to the default ssh user and group
 chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${WORKING_DIRECTORY}
@@ -74,10 +76,6 @@ then
 else
   echo "Failed to remove APT cache."
 fi
-
-# zero out the drive
-dd if=/dev/zero of=/EMPTY bs=1M
-rm -f /EMPTY
 
 # clear the bash history and exit
 cat /dev/null > ${WORKING_DIRECTORY}/.bash_history && history -c
