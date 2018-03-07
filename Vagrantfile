@@ -15,6 +15,11 @@
 require 'yaml'
 require 'fileutils'
 
+$stdout.print "username: "
+USERNAME = $stdin.gets.chomp
+$stdout.print "password: "
+PASSWORD = $stdin.noecho(&:gets).chomp
+
 FILES_PATH = "./files/"
 JDK_ARCHIVE = "jdk-8u144-linux-x64.tar.gz"
 MYSQL_CONNECTOR = "mysql-connector-java-5.1.45-bin.jar"
@@ -43,6 +48,14 @@ Vagrant.configure("2") do |config|
 
       # set the network configurations for the vm
       server_config.vm.network :private_network,ip: box['ip']
+
+      #forwarding ports to access the server via localhost
+      if box['ports']
+        box['ports'].each do |port|
+          server_config.vm.network "forwarded_port", guest: port, host: port, guest_ip: box['ip']
+        end
+      end
+
       memory = 2048
       cpu = 1
 
@@ -64,8 +77,13 @@ Vagrant.configure("2") do |config|
           source = FILES_PATH + resource
           server_config.vm.provision "file", source: source, destination: DEFAULT_MOUNT + resource
         end
+      end
+      # run the provisioner to get the latest pack
+      if box['provisioner_script_args']
+        server = box['provisioner_script_args'][0]['server']
+        version = box['provisioner_script_args'][1]['version']
+        server_config.vm.provision "shell", path: box["provisioner_script"], args: [server, version, USERNAME, PASSWORD]
       else
-        # if no argument(s) have been defined to be passed to the shell script
         server_config.vm.provision "shell", path: box["provisioner_script"]
       end
     end

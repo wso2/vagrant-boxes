@@ -23,32 +23,62 @@ boxes:
     output_box: wso2am
     base_box: ubuntu/trusty64
     ip: 172.28.128.4
+    ports:
+      - 9443
+      - 8280
+      - 8243
     resources:
       - wso2am-2.1.0.zip
+    provisioner_script: provisioner/provisioner.sh
+    provisioner_script_args:
+      - server: wso2am
+      - version: 2.1.0
   -
     output_box: wso2am-analytics
     base_box: ubuntu/trusty64
     ip: 172.28.128.5
     resources:
       - wso2am-analytics-2.1.0.zip
+    provisioner_script: provisioner/provisioner.sh
+    provisioner_script_args:
+      - server: wso2am-analytics
+      - version: 2.1.0
   -
     output_box: wso2ei
     base_box: ubuntu/trusty64
     ip: 172.28.128.4
+    ports:
+      - 9444
     resources:
       - wso2ei-6.1.1.zip
+    provisioner_script: provisioner/provisioner.sh
+    provisioner_script_args:
+      - server: wso2ei
+      - version: 6.1.1
   -
     output_box: wso2is
     base_box: ubuntu/trusty64
     ip: 172.28.128.4
+    ports:
+      - 9443
     resources:
       - wso2is-5.4.1.zip
+    provisioner_script: provisioner/provisioner.sh
+    provisioner_script_args:
+      - server: wso2is
+      - version: 5.4.1
   -
     output_box: wso2is-analytics
     base_box: ubuntu/trusty64
     ip: 172.28.128.5
+    ports:
+      - 9444
     resources:
       - wso2is-analytics-5.4.1.zip
+    provisioner_script: provisioner/provisioner.sh
+    provisioner_script_args:
+      - server: wso2is-analytics
+      - version: 5.4.1
   -
     output_box: wso2is-as-km
     base_box: ubuntu/trusty64
@@ -68,3 +98,7 @@ boxes:
      - scala_parser_combinators_2.11_1.0.4_1.0.0.jar
      - zkclient_0.8_1.0.0.jar
      - zookeeper_3.4.6_1.0.0.jar
+   provisioner_script: provisioner/provisioner.sh
+   provisioner_script_args:
+     - server: wso2sp
+     - version: 4.0.0
