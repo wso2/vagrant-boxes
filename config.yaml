@@ -98,3 +98,7 @@ boxes:
      - scala_parser_combinators_2.11_1.0.4_1.0.0.jar
      - zkclient_0.8_1.0.0.jar
      - zookeeper_3.4.6_1.0.0.jar
+   provisioner_script: provisioner/provisioner.sh
+   provisioner_script_args:
+     - server: wso2sp
+     - version: 4.0.0
