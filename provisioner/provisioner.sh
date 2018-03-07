@@ -21,15 +21,15 @@
 # set variables
 WSO2_SERVER=$1
 WSO2_SERVER_VERSION=$2
-USERNAME = $3
-PASSWORD = $4
+USERNAME=$3
+PASSWORD=$4
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}.zip
 WSO2_SERVER_UPDATED_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}.*.zip
 WUM_ARCHIVE=wum-1.0-linux-x64.tar.gz
 WORKING_DIRECTORY=/home/vagrant
-WUM_HOME=/usr/local
-WUM_PATH=PATH=$PATH:/usr/local/wum/bin
-WUM_PRODUCT_LOCATION=${WORKING_DIRECTORY}/.wum-wso2/products/${WSO2_SERVER}/${WSO2_SERVER_VERSION}/
+WUM_HOME=/usr/local/
+WUM_PATH='PATH=$PATH:/usr/local/wum/bin'
+WUM_PRODUCT_LOCATION=/root/.wum-wso2/products/${WSO2_SERVER}/${WSO2_SERVER_VERSION}/
 
 
 # operate in anti-fronted mode with no user interaction
@@ -50,9 +50,9 @@ fi
 echo "Setting up WUM."
 if test ! -d ${WUM_HOME}; then
   mkdir ${WUM_HOME};
-  tar -xf ${WORKING_DIRECTORY}/${WUM_ARCHIVE} -C ${WUM_HOME} --strip-components=1
-  echo "Successfully set up WUM."
 fi
+tar -xf ${WORKING_DIRECTORY}/${WUM_ARCHIVE} -C ${WUM_HOME} --strip-components=1
+echo "Successfully set up WUM."
 
 export WUM_PATH
 
