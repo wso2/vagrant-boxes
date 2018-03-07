@@ -21,62 +21,47 @@
 # set variables
 WSO2_SERVER=$1
 WSO2_SERVER_VERSION=$2
-WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.zip
-JDK_ARCHIVE=jdk-8u*-linux-x64.tar.gz
-MYSQL_CONNECTOR=mysql-connector-java-5.1.*-bin.jar
+USERNAME = $3
+PASSWORD = $4
+WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}.zip
+WSO2_SERVER_UPDATED_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}.*.zip
 WUM_ARCHIVE=wum-1.0-linux-x64.tar.gz
-DEFAULT_MOUNT=/vagrant
-SOFTWARE_DISTRIBUTIONS=${DEFAULT_MOUNT}/files
 WORKING_DIRECTORY=/home/vagrant
-JAVA_HOME=/opt/java
 WUM_HOME=/usr/local
-DEFAULT_USER=vagrant
+WUM_PATH=PATH=$PATH:/usr/local/wum/bin
+WUM_PRODUCT_LOCATION=${WORKING_DIRECTORY}/.wum-wso2/products/${WSO2_SERVER}/${WSO2_SERVER_VERSION}/
+
 
 # operate in anti-fronted mode with no user interaction
 export DEBIAN_FRONTEND=noninteractive
 
 # check if the required software distributions have been added
-if [ ! -f ${SOFTWARE_DISTRIBUTIONS}/${WSO2_SERVER_PACK} ]; then
-    echo "WSO2 server pack not found. Please copy the ${WSO2_SERVER_PACK} to ${SOFTWARE_DISTRIBUTIONS} folder and retry."
+if [ ! -f ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK} ]; then
+    echo "WSO2 server pack not found. Please copy the ${WSO2_SERVER_PACK} to ${WORKING_DIRECTORY} folder and retry."
     exit 1
 fi
 
-if [ ! -f ${SOFTWARE_DISTRIBUTIONS}/${JDK_ARCHIVE} ]; then
-    echo "JDK archive file not found. Please copy the JDK archive file to ${SOFTWARE_DISTRIBUTIONS} folder and retry."
+if [ ! -f ${WORKING_DIRECTORY}/${WUM_ARCHIVE} ]; then
+    echo "WUM archive file not found. Please copy the JDK archive file to ${WORKING_DIRECTORY} folder and retry."
     exit 1
 fi
 
-if [ ! -f ${SOFTWARE_DISTRIBUTIONS}/${MYSQL_CONNECTOR} ]; then
-    echo "MySQL Connector JAR file not found. Please copy the MySQL Connector JAR file to ${SOFTWARE_DISTRIBUTIONS} folder and retry."
-    exit 1
+# set up wum
+echo "Setting up WUM."
+if test ! -d ${WUM_HOME}; then
+  mkdir ${WUM_HOME};
+  tar -xf ${WORKING_DIRECTORY}/${WUM_ARCHIVE} -C ${WUM_HOME} --strip-components=1
+  echo "Successfully set up WUM."
 fi
 
-echo "Starting the ${WSO2_SERVER}-${WSO2_SERVER_VERSION} Vagrant box build process."
+export WUM_PATH
 
-# install utility software
-echo "Installing software utilities."
-apt-get install unzip
-echo "Successfully installed software utilities."
+echo "Getting the ${WSO2_SERVER}-${WSO2_SERVER_VERSION} latest pack."
+wum init -u ${USERNAME} -p ${PASSWORD}
+wum add --file ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
+wum update
+mv ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 
-# moving Java
-echo "Moving the ${JDK_ARCHIVE} to the directory: ${WORKING_DIRECTORY}."
-mv ${SOFTWARE_DISTRIBUTIONS}/${JDK_ARCHIVE} ${WORKING_DIRECTORY}
-echo "Successfully moved ${JDK_ARCHIVE} to ${WORKING_DIRECTORY}."
-
-# moving WUM
-echo "Moving the ${WUM_ARCHIVE} to the directory: ${WORKING_DIRECTORY}."
-mv ${SOFTWARE_DISTRIBUTIONS}/${WUM_ARCHIVE} ${WORKING_DIRECTORY}
-echo "Successfully moved ${WUM_ARCHIVE} to ${WORKING_DIRECTORY}."
-
-# moving the WSO2 product pack to the working directory
-echo "Moving the ${WSO2_SERVER_PACK} to the directory: ${WORKING_DIRECTORY}."
-mv ${SOFTWARE_DISTRIBUTIONS}/${WSO2_SERVER_PACK} ${WORKING_DIRECTORY}
-echo "Successfully moved ${WSO2_SERVER_PACK} to ${WORKING_DIRECTORY}."
-
-# copying the MySQL driver
-echo "Copying the MySQL driver to the ${WORKING_DIRECTORY}."
-cp ${SOFTWARE_DISTRIBUTIONS}/${MYSQL_CONNECTOR} ${WORKING_DIRECTORY}
-echo "Successfully copied the MySQL driver to the server pack."
 
 # set ownership of the working directory to the default ssh user and group
 chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${WORKING_DIRECTORY}
@@ -91,8 +76,8 @@ else
 fi
 
 # zero out the drive
-#dd if=/dev/zero of=/EMPTY bs=1M
-#rm -f /EMPTY
+dd if=/dev/zero of=/EMPTY bs=1M
+rm -f /EMPTY
 
 # clear the bash history and exit
 cat /dev/null > ${WORKING_DIRECTORY}/.bash_history && history -c
