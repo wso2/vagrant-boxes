@@ -61,7 +61,7 @@ wum init -u ${USERNAME} -p ${PASSWORD}
 wum add --file ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 wum update
 mv ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
-
+rm -rf /root/.wum-wso2/congif.yaml
 
 # set ownership of the working directory to the default ssh user and group
 chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${WORKING_DIRECTORY}
