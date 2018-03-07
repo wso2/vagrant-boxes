@@ -50,6 +50,12 @@ boxes:
     resources:
       - wso2is-analytics-5.4.1.zip
   -
+    output_box: wso2is-as-km
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.6
+    resources:
+      - wso2is-km-5.3.0.zip
+  -
    output_box: wso2sp
    base_box: ubuntu/trusty64
    ip: 172.28.128.4
