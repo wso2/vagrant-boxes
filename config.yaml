@@ -85,6 +85,10 @@ boxes:
     ip: 172.28.128.6
     resources:
       - wso2is-km-5.3.0.zip
+    provisioner_script: provisioner/provisioner.sh
+    provisioner_script_args:
+      - server: wso2is-as-km
+      - version: 5.3.0
   -
    output_box: wso2sp
    base_box: ubuntu/trusty64
@@ -95,3 +99,13 @@ boxes:
    provisioner_script_args:
      - server: wso2sp
      - version: 4.0.0
+  -
+   output_box: wso2iot
+   base_box: ubuntu/trusty64
+   ip: 172.28.128.5
+   resources:
+     - wso2iot-3.1.0.zip
+   provisioner_script: provisioner/provisioner.sh
+   provisioner_script_args:
+     - server: wso2iot
+     - version: 3.1.0

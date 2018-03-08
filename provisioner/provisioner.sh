@@ -60,10 +60,13 @@ echo "Getting the ${WSO2_SERVER}-${WSO2_SERVER_VERSION} latest pack."
 wum init -u ${USERNAME} -p ${PASSWORD}
 wum add --file ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 wum update
+echo "moving product pack to ${WORKING_DIRECTORY}"
 mv ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
+echo "Removing unnecessary files."
 rm -rf /root/.wum-wso2/congif.yaml
 rm -rf /root/.wum-wso2/updates
 rm -rf ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_PACK}
+echo "Removing unnecessary files finished Successfully."
 
 # set ownership of the working directory to the default ssh user and group
 chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${WORKING_DIRECTORY}
