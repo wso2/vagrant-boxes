@@ -191,6 +191,8 @@ boxes:
     output_box: wso2iot
     base_box: ubuntu/trusty64
     ip: 172.28.128.5
+    ports:
+      - 9443
     resources:
       - wso2iot-3.1.0.zip
     provisioner_script: provisioner/provisioner.sh
