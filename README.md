@@ -39,11 +39,11 @@ The local copy of the `vagrant-boxes` directory will be referred to as `VAGARNT-
 
       [WSO2 Identity Server 5.4.1](https://wso2.com/identity-and-access-management#download).
 
-   iv. Stream Processor 4.0.0
+   v. Stream Processor 4.0.0
 
       [WSO2 Stream Processor 4.0.0](https://wso2.com/analytics#download).
 
-   iv. IoT Server 3.1.0
+   vi. IoT Server 3.1.0
 
       [WSO2 IoT Server 3.1.0](https://wso2.com/iot#download).
 
