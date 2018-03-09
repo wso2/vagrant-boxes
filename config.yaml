@@ -23,10 +23,6 @@ boxes:
     output_box: wso2am
     base_box: ubuntu/trusty64
     ip: 172.28.128.4
-    ports:
-      - 9443
-      - 8280
-      - 8243
     resources:
       - wso2am-2.1.0.zip
     provisioner_script: provisioner/provisioner.sh
@@ -47,8 +43,6 @@ boxes:
     output_box: wso2ei
     base_box: ubuntu/trusty64
     ip: 172.28.128.4
-    ports:
-      - 9444
     resources:
       - wso2ei-6.1.1.zip
     provisioner_script: provisioner/provisioner.sh
@@ -59,8 +53,6 @@ boxes:
     output_box: wso2is
     base_box: ubuntu/trusty64
     ip: 172.28.128.4
-    ports:
-      - 9443
     resources:
       - wso2is-5.4.1.zip
     provisioner_script: provisioner/provisioner.sh
@@ -71,8 +63,6 @@ boxes:
     output_box: wso2is-analytics
     base_box: ubuntu/trusty64
     ip: 172.28.128.5
-    ports:
-      - 9444
     resources:
       - wso2is-analytics-5.4.1.zip
     provisioner_script: provisioner/provisioner.sh
@@ -87,7 +77,7 @@ boxes:
       - wso2is-km-5.3.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
-      - server: wso2is-as-km
+      - server: wso2is-km
       - version: 5.3.0
   -
    output_box: wso2sp
@@ -103,8 +93,6 @@ boxes:
    output_box: wso2iot
    base_box: ubuntu/trusty64
    ip: 172.28.128.5
-   ports:
-     - 9443
    resources:
      - wso2iot-3.1.0.zip
    provisioner_script: provisioner/provisioner.sh
