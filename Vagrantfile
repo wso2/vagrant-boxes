@@ -34,6 +34,8 @@ DEFAULT_MOUNT = "/home/vagrant/"
 CONFIGURATIONS = YAML.load_file('config.yaml')
 
 Vagrant.configure("2") do |config|
+  # changing default timeout from 300 to 1000 seconds
+  config.vm.boot_timeout = 1000
   # going through each server configuratioin specification
   CONFIGURATIONS['boxes'].each do |box|
     # define the vm configuration
