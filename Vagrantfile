@@ -51,6 +51,13 @@ Vagrant.configure("2") do |config|
       # set the network configurations for the vm
       server_config.vm.network :private_network,ip: box['ip']
 
+      #forwarding ports to access the server via localhost
+      if box['ports']
+        box['ports'].each do |port|
+          server_config.vm.network "forwarded_port", guest: port, host: port, guest_ip: box['ip']
+        end
+      end
+
       memory = 2048
       cpu = 1
 
