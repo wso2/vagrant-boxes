@@ -59,6 +59,8 @@ boxes:
     output_box: wso2is
     base_box: ubuntu/trusty64
     ip: 172.28.128.4
+    ports:
+      - 9443
     resources:
       - wso2is-5.4.1.zip
     provisioner_script: provisioner/provisioner.sh
