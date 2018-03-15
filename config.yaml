@@ -87,7 +87,7 @@ boxes:
       - wso2is-km-5.3.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
-      - server: wso2is-as-km
+      - server: wso2is-km
       - version: 5.3.0
   -
    output_box: wso2sp

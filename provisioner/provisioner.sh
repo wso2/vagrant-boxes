@@ -62,10 +62,19 @@ wum add --file ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 wum update
 echo "moving product pack to ${WORKING_DIRECTORY}"
 mv ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
+
+echo "removing common wum user credentails"
+sed -i "s/username:.*/username:/" /root/.wum-wso2/config.yaml
+sed -i "s/refreshtoken:.*/refreshtoken:/" /root/.wum-wso2/config.yaml
+sed -i "s/accesstoken:.*/accesstoken:/" /root/.wum-wso2/config.yaml
+echo "wum credentials and app keys removed Successfully"
+
 echo "Removing unnecessary files."
-rm -rf /root/.wum-wso2/congif.yaml
 rm -rf /root/.wum-wso2/updates
 rm -rf ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_PACK}
+rm -rf ${WUM_ARCHIVE}
+rm -rf /tmp/wum*
+ls -lh
 echo "Removing unnecessary files finished Successfully."
 
 # set ownership of the working directory to the default ssh user and group
@@ -79,6 +88,17 @@ then
 else
   echo "Failed to remove APT cache."
 fi
+# Zero free space to aid VM compression
+dd if=/dev/zero of=/EMPTY bs=1M | true
+rm -f /EMPTY
+
+# Remove bash history
+unset HISTFILE
+rm -f /root/.bash_history
+rm -f /home/vagrant/.bash_history
+
+# Cleanup log files
+find /var/log -type f | while read f; do echo -ne '' > $f; done;
 
 # clear the bash history and exit
 cat /dev/null > ${WORKING_DIRECTORY}/.bash_history && history -c
