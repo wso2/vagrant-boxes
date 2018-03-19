@@ -64,9 +64,9 @@ echo "moving product pack to ${WORKING_DIRECTORY}"
 mv ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 
 echo "removing common wum user credentails"
-sed -i "s/username:.*/username:/" /root/.wum-wso2/config.yaml
-sed -i "s/refreshtoken:.*/refreshtoken:/" /root/.wum-wso2/config.yaml
-sed -i "s/accesstoken:.*/accesstoken:/" /root/.wum-wso2/config.yaml
+sed -i "s/username:.*/username:/" ~/.wum-wso2/config.yaml
+sed -i "s/refreshtoken:.*/refreshtoken:/" ~/.wum-wso2/config.yaml
+sed -i "s/accesstoken:.*/accesstoken:/" ~/.wum-wso2/config.yaml
 echo "wum credentials and app keys removed Successfully"
 
 echo "Removing unnecessary files."
