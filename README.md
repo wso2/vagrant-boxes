@@ -43,9 +43,9 @@ The local copy of the `vagrant-boxes` directory will be referred to as `VAGARNT-
 
       [WSO2 Stream Processor 4.0.0](https://wso2.com/analytics#download).
 
-   vi. IoT Server 3.1.0
+   vi. IoT Server 3.2.0
 
-      [WSO2 IoT Server 3.1.0](https://wso2.com/iot#download).
+      [WSO2 IoT Server 3.2.0](https://wso2.com/iot#download).
 
    vii. Copy them to the following path
 
@@ -178,7 +178,7 @@ boxes:
       - server: wso2sp
       - version: 4.0.0
 ```
-IoT Server 3.1.0
+IoT Server 3.2.0
 ```
 ---
 boxes:
@@ -194,11 +194,11 @@ boxes:
     ports:
       - 9443
     resources:
-      - wso2iot-3.1.0.zip
+      - wso2iot-3.2.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2iot
-      - version: 3.1.0
+      - version: 3.2.0
 ```
 
 4. Run the Vagrantfile.
