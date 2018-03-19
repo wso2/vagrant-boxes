@@ -15,11 +15,6 @@
 require 'yaml'
 require 'fileutils'
 
-$stdout.print "username: "
-USERNAME = $stdin.gets.chomp
-$stdout.print "password: "
-PASSWORD = $stdin.noecho(&:gets).chomp
-
 FILES_PATH = "./files/"
 JDK_ARCHIVE = "jdk-8u144-linux-x64.tar.gz"
 MYSQL_CONNECTOR = "mysql-connector-java-5.1.45-bin.jar"
@@ -84,7 +79,7 @@ Vagrant.configure("2") do |config|
       if box['provisioner_script_args']
         server = box['provisioner_script_args'][0]['server']
         version = box['provisioner_script_args'][1]['version']
-        server_config.vm.provision "shell", path: box["provisioner_script"], args: [server, version, USERNAME, PASSWORD]
+        server_config.vm.provision "shell", path: box["provisioner_script"], args: [server, version]
       else
         server_config.vm.provision "shell", path: box["provisioner_script"]
       end
