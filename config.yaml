@@ -15,7 +15,7 @@
 ---
 boxes:
   -
-    output_box: mysql
+    output_box: wso2-mysql
     base_box: ubuntu/trusty64
     ip: 172.28.128.3
     provisioner_script: mysql-provisioner/provisioner.sh
