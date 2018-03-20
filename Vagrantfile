@@ -17,7 +17,7 @@ require 'fileutils'
 require 'uri'
 require 'erb'
 
-$stdout.print "login: "
+$stdout.print "username: "
 USERNAME = $stdin.gets.chomp
 $stdout.print "password: "
 PASSWORD = $stdin.noecho(&:gets).chomp
