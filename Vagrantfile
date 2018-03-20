@@ -14,11 +14,14 @@
 
 require 'yaml'
 require 'fileutils'
+require 'uri'
+require 'erb'
 
-$stdout.print "username: "
+$stdout.print "login: "
 USERNAME = $stdin.gets.chomp
 $stdout.print "password: "
 PASSWORD = $stdin.noecho(&:gets).chomp
+TOKEN = [ERB::Util.url_encode(USERNAME), ERB::Util.url_encode(PASSWORD)].join(':')
 
 FILES_PATH = "./files/"
 JDK_ARCHIVE = "jdk-8u144-linux-x64.tar.gz"
