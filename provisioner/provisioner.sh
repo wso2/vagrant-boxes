@@ -60,7 +60,7 @@ wum init -u ${USERNAME} -p ${PASSWORD}
 wum add --file ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 wum update
 
-if [ ! - f ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK}]; then
+if [ ! - f ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ]; then
   echo "No updated pack. Use the GA pack instead."
 else
   echo "moving product pack to ${WORKING_DIRECTORY}"
