@@ -19,8 +19,8 @@ require 'erb'
 
 # check whether the command is 'vagrant up'
 if ARGV[0] == 'up'
-  print "Please insert your credentials\n"
-  print "WSO2 account username: "
+  print "Please insert your WSO2 credentials\n"
+  print "Username: "
   USERNAME = STDIN.gets.chomp
   print "Password: "
   PASSWORD = STDIN.noecho(&:gets).chomp
