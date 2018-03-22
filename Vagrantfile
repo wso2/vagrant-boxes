@@ -17,10 +17,21 @@ require 'fileutils'
 require 'uri'
 require 'erb'
 
-$stdout.print "username: "
-USERNAME = $stdin.gets.chomp
-$stdout.print "password: "
-PASSWORD = $stdin.noecho(&:gets).chomp
+# check whether the command is 'vagrant up'
+if ARGV[0] == 'up'
+  print "Please insert your credentials\n"
+  print "WSO2 account username: "
+  USERNAME = STDIN.gets.chomp
+  print "Password: "
+  PASSWORD = STDIN.noecho(&:gets).chomp
+  print "\n"
+else
+  # initializing USERNAME and PASSWORD
+  USERNAME = ""
+  PASSWORD = ""
+end
+
+# generate TOKEN
 TOKEN = [ERB::Util.url_encode(USERNAME), ERB::Util.url_encode(PASSWORD)].join(':')
 
 FILES_PATH = "./files/"
@@ -66,7 +77,7 @@ Vagrant.configure("2") do |config|
 
       server_config.vm.provider :virtualbox do |vb|
         vb.name = box['output_box_name']
-        vb.check_guest_additions = false
+        vb.check_guest_additions = true
         vb.functional_vboxsf = false
         vb.gui = false
         vb.customize ['modifyvm', :id, '--memory', memory]
