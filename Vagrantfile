@@ -31,9 +31,6 @@ else
   PASSWORD = ""
 end
 
-# generate TOKEN
-TOKEN = [ERB::Util.url_encode(USERNAME), ERB::Util.url_encode(PASSWORD)].join(':')
-
 FILES_PATH = "./files/"
 JDK_ARCHIVE = "jdk-8u144-linux-x64.tar.gz"
 MYSQL_CONNECTOR = "mysql-connector-java-5.1.45-bin.jar"
