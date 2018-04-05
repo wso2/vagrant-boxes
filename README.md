@@ -31,21 +31,21 @@ The local copy of the `vagrant-boxes` directory will be referred to as `VAGARNT-
 
       [WSO2 API Manager 2.1.0](https://wso2.com/api-management/#download).
 
-   iii. WSO2 Enterprise Integrator 6.1.1
+   iii. WSO2 Enterprise Integrator 6.2.0
 
-      [WSO2 Enterprise Integrator 6.1.1](https://wso2.com/integration#download).
+      [WSO2 Enterprise Integrator 6.2.0](https://wso2.com/integration#download).
 
-   iv. WSO2 Identity Server 5.4.1
+   iv. WSO2 Identity Server 5.5.0
 
-      [WSO2 Identity Server 5.4.1](https://wso2.com/identity-and-access-management#download).
+      [WSO2 Identity Server 5.5.0](https://wso2.com/identity-and-access-management#download).
 
-   v. Stream Processor 4.0.0
+   v. Stream Processor 4.1.0
 
-      [WSO2 Stream Processor 4.0.0](https://wso2.com/analytics#download).
+      [WSO2 Stream Processor 4.1.0](https://wso2.com/analytics#download).
 
-   vi. IoT Server 3.2.0
+   vi. IoT Server 3.3.0
 
-      [WSO2 IoT Server 3.2.0](https://wso2.com/iot#download).
+      [WSO2 IoT Server 3.3.0](https://wso2.com/iot#download).
 
    vii. Copy them to the following path
 
@@ -74,34 +74,44 @@ boxes:
       - 8280
       - 8243
     resources:
-      - wso2am-2.1.0.zip
+      - wso2am-2.2.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2am
-      - version: 2.1.0
+      - version: 2.2.0
   -
     output_box: wso2am-analytics
     base_box: ubuntu/trusty64
     ip: 172.28.128.5
     resources:
-      - wso2am-analytics-2.1.0.zip
+      - wso2am-analytics-2.2.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2am-analytics
-      - version: 2.1.0
+      - version: 2.2.0
   -
     output_box: wso2is-as-km
     base_box: ubuntu/trusty64
     ip: 172.28.128.6
     resources:
-      - wso2is-km-5.3.0.zip
+      - wso2is-km-5.5.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2is-as-km
-      - version: 5.3.0
+      - version: 5.5.0
+  -
+    output_box: wso2am-micro-gw
+    base_box: ubuntu/trusty64
+    ip: 172.28.128.7
+    resources:
+      - wso2am-micro-gw-2.2.0.zip
+    provisioner_script: provisioner/provisioner.sh
+    provisioner_script_args:
+      - server: wso2am-micro-gw
+      - version: 2.2.0
 
 ```
-WSO2 Enterprise Integrator 6.1.1
+WSO2 Enterprise Integrator 6.2.0
 ```
 ---
 boxes:
@@ -117,14 +127,14 @@ boxes:
     ports:
       - 9444
     resources:
-      - wso2ei-6.1.1.zip
+      - wso2ei-6.2.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2ei
-      - version: 6.1.1
+      - version: 6.2.0
 
 ```
-WSO2 Identity Server 5.4.1
+WSO2 Identity Server 5.5.0
 ```
 ---
 boxes:
@@ -140,11 +150,11 @@ boxes:
     ports:
       - 9443
     resources:
-      - wso2is-5.4.1.zip
+      - wso2is-5.5.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2is
-      - version: 5.4.1
+      - version: 5.5.0
   -
     output_box: wso2is-analytics
     base_box: ubuntu/trusty64
@@ -152,13 +162,13 @@ boxes:
     ports:
       - 9444
     resources:
-      - wso2is-analytics-5.4.1.zip
+      - wso2is-analytics-5.5.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2is-analytics
-      - version: 5.4.1
+      - version: 5.5.0
 ```
-Stream Processor 4.0.0
+Stream Processor 4.1.0
 ```
 ---
 boxes:
@@ -172,13 +182,13 @@ boxes:
     base_box: ubuntu/trusty64
     ip: 172.28.128.4
     resources:
-      - wso2sp-4.0.0.zip
+      - wso2sp-4.1.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2sp
-      - version: 4.0.0
+      - version: 4.1.0
 ```
-IoT Server 3.2.0
+IoT Server 3.3.0
 ```
 ---
 boxes:
@@ -194,11 +204,11 @@ boxes:
     ports:
       - 9443
     resources:
-      - wso2iot-3.2.0.zip
+      - wso2iot-3.3.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2iot
-      - version: 3.2.0
+      - version: 3.3.0
 ```
 
 4. Run the Vagrantfile.
