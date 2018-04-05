@@ -31,7 +31,6 @@ WUM_HOME=/usr/local/
 WUM_PATH='PATH=$PATH:/usr/local/wum/bin'
 WUM_PRODUCT_LOCATION=/root/.wum-wso2/products/${WSO2_SERVER}/${WSO2_SERVER_VERSION}
 
-
 # operate in anti-fronted mode with no user interaction
 export DEBIAN_FRONTEND=noninteractive
 
@@ -60,8 +59,13 @@ echo "Getting the ${WSO2_SERVER}-${WSO2_SERVER_VERSION} latest pack."
 wum init -u ${USERNAME} -p ${PASSWORD}
 wum add --file ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 wum update
-echo "moving product pack to ${WORKING_DIRECTORY}"
-mv ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
+
+if [ ! - f ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ]; then
+  echo "No updated pack. Use the GA pack instead."
+else
+  echo "moving product pack to ${WORKING_DIRECTORY}"
+  mv ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
+fi
 
 echo "removing common wum user credentails"
 sed -i "s/username:.*/username:/" /root/.wum-wso2/config.yaml
