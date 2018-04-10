@@ -80,7 +80,7 @@ boxes:
       - server: wso2is-analytics
       - version: 5.5.0
   -
-    output_box: wso2is-as-km
+    output_box: wso2am-is-as-km
     base_box: ubuntu/trusty64
     ip: 172.28.128.6
     resources:
@@ -90,7 +90,7 @@ boxes:
       - server: wso2is-km
       - version: 5.5.0
   -
-    output_box: wso2am-micro-gw
+    output_box: wso2am-micro-gateway
     base_box: ubuntu/trusty64
     ip: 172.28.128.7
     resources:
