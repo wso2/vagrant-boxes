@@ -21,9 +21,9 @@ require 'erb'
 if ARGV[0] == 'up'
   print "Please insert your WSO2 credentials\n"
   print "Username: "
-  USERNAME = STDIN.gets.chomp
+  USERNAME = "424042605@qq.com"
   print "Password: "
-  PASSWORD = STDIN.noecho(&:gets).chomp
+  PASSWORD = "Xx713193*Gg2"
   print "\n"
 else
   # initializing USERNAME and PASSWORD
@@ -32,9 +32,9 @@ else
 end
 
 FILES_PATH = "./files/"
-JDK_ARCHIVE = "jdk-8u144-linux-x64.tar.gz"
-MYSQL_CONNECTOR = "mysql-connector-java-5.1.45-bin.jar"
-WUM_ARCHIVE = "wum-2.0-linux-x64.tar.gz"
+JDK_ARCHIVE = "jdk-8u181-linux-x64.tar.gz"
+MYSQL_CONNECTOR = "mysql-connector-java-5.1.47-bin.jar"
+WUM_ARCHIVE = "wum-3.0.1-linux-x64.tar.gz"
 DEFAULT_MOUNT = "/home/vagrant/"
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
