@@ -83,7 +83,6 @@ Vagrant.configure("2") do |config|
 
       # add the resources to the boxes
       if box['resources']
-        server_config.vm.provision "file", source: FILES_PATH + JDK_ARCHIVE, destination: DEFAULT_MOUNT + JDK_ARCHIVE
         server_config.vm.provision "file", source: FILES_PATH + MYSQL_CONNECTOR, destination: DEFAULT_MOUNT + MYSQL_CONNECTOR
         server_config.vm.provision "file", source: FILES_PATH + WUM_ARCHIVE, destination: DEFAULT_MOUNT + WUM_ARCHIVE
         box['resources'].each do |resource|
@@ -100,5 +99,8 @@ Vagrant.configure("2") do |config|
         server_config.vm.provision "shell", path: box["provisioner_script"]
       end
     end
+  end
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "ansible/playbook-jdk.yml"
   end
 end
