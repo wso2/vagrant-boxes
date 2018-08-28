@@ -41,7 +41,7 @@ boxes:
       - 9454
     resources:
       - wso2ei-6.2.0.zip
-    provisioner_script: wso2infrastructure/wso2ei.sh
+    provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2ei
       - version: 6.2.0
