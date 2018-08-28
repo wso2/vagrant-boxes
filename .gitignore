@@ -26,3 +26,5 @@ hs_err_pid*
 output/*.box
 build.sh
 box_definitions.rb
+.project
+*.retry

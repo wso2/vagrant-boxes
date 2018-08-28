@@ -1,0 +1,24 @@
+#! /bin/sh
+export JAVA_HOME="/opt/java/jdk1.8.0_181"
+ 
+startcmd='/opt/app/wso2ei-6.2.0/bin/integrator.sh start> /dev/null &'
+restartcmd='/opt/app/wso2ei-6.2.0/bin/integrator.sh restart> /dev/null &'
+stopcmd='/opt/app/wso2ei-6.2.0/bin/integrator.sh stop> /dev/null &'
+ 
+case "$1" in
+start)
+   echo "Starting the WSO2 Server ..."
+   su -c "${startcmd}" vagrant
+;;
+restart)
+   echo "Re-starting the WSO2 Server ..."
+   su -c "${restartcmd}" vagrant
+;;
+stop)
+   echo "Stopping the WSO2 Server ..."
+   su -c "${stopcmd}" vagrant
+;;
+*)
+   echo "Usage: $0 {start|stop|restart}"
+exit 1
+esac

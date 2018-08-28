@@ -1,0 +1,23 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+    - name: "cp jdk1.8 to each machine"
+      copy: "src={{ item.src }} dest={{ item.dest }}"
+      with_items:
+        - src: "../ansible-file/jdk-8u181-linux-x64.tar.gz"
+          dest: "/tmp/"
+        - src: "../ansible-file/java.sh"
+          dest: "/etc/profile.d"
+    - name: "mkdir for java"
+      command: >
+        mkdir -p /opt/java
+    - name: "unpack the jdk to /opt/java"
+      command: >
+        tar -C /opt/java -zxvf /tmp/jdk-8u181-linux-x64.tar.gz
+    - name: "update alternatives for java"
+      command: >
+        update-alternatives --install /usr/bin/java java /opt/java/jdk1.8.0_181/bin/java 300
+    - name: "update alternatives for javac"
+      command: >
+        update-alternatives --install /usr/bin/javac javac /opt/java/jdk1.8.0_181/bin/javac 300

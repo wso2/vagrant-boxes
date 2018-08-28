@@ -25,8 +25,8 @@ USERNAME=$3
 PASSWORD=$4
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}.zip
 WSO2_SERVER_UPDATED_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}.*.zip
-WUM_ARCHIVE=wum-2.0-linux-x64.tar.gz
-WORKING_DIRECTORY=/home/vagrant
+WUM_ARCHIVE=wum-3.0.1-linux-x64.tar.gz
+WORKING_DIRECTORY=/tmp/
 WUM_HOME=/usr/local/
 WUM_PATH='PATH=$PATH:/usr/local/wum/bin'
 WUM_PRODUCT_LOCATION=/root/.wum-wso2/products/${WSO2_SERVER}/${WSO2_SERVER_VERSION}
@@ -56,6 +56,8 @@ echo "Successfully set up WUM."
 export WUM_PATH
 
 echo "Getting the ${WSO2_SERVER}-${WSO2_SERVER_VERSION} latest pack."
+echo "wso2 username ${USERNAME}"
+echo "wso2 username ${PASSWORD}"
 wum init -u ${USERNAME} -p ${PASSWORD}
 wum add --file ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 wum update
