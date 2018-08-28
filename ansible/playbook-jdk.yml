@@ -7,6 +7,8 @@
       with_items:
         - src: "../ansible-file/jdk-8u181-linux-x64.tar.gz"
           dest: "/tmp/"
+        - src: "../ansible-file/java.sh"
+          dest: "/etc/profile.d"
     - name: "mkdir for java"
       command: >
         mkdir -p /opt/java
@@ -16,3 +18,6 @@
     - name: "update alternatives for java"
       command: >
         update-alternatives --install /usr/bin/java java /opt/java/jdk1.8.0_181/bin/java 300
+    - name: "update alternatives for javac"
+      command: >
+        update-alternatives --install /usr/bin/javac javac /opt/java/jdk1.8.0_181/bin/javac 300

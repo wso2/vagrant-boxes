@@ -1,0 +1,47 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+    - name: "check the package existing"
+      shell: ls /tmp/wso2ei-6.2.0.zip
+      ignore_errors: True
+      register: package
+    - name: "copy the wso2ei package to machine"
+      copy: "src={{ item.src }} dest={{ item.dest }}"
+      with_items:
+        - src: "../../ansible-file/wso2ei/wso2ei-6.2.0.zip"
+          dest: "/tmp/"
+      when: package|failed
+    - name: "install unzip"
+      command: >
+        apt-get install -y unzip
+    - name: "if /opt/app not exist,create directory"
+      shell: cd /opt/app
+      ignore_errors: True
+      register: result1  
+
+    - shell: echo "/opt/appfile exit"
+      when: result1|succeeded 
+
+    - shell: mkdir /opt/app
+      when: result1|failed
+
+    - name: "unpack the wso2ei package to /opt/app"
+      command: >
+        unzip -o -d /opt/app /tmp/wso2ei-6.2.0.zip
+
+    - name: "chown -R vagrant:vagrant /opt/app/wso2ei-6.2.0"
+      command: >
+        chown -R vagrant:vagrant /opt/app/wso2ei-6.2.0
+
+    - name: copy the wso2ei server.sh to machine
+      copy:
+        src: ../../ansible-file/wso2ei/wso2ei
+        dest: /etc/init.d/
+        mode: 0755
+    - name: "Install the startup script to respective runlevels using the command update-rc.d"
+      command: >
+        update-rc.d wso2ei defaults
+    - name: "Start wso2 ei"
+      command: >
+        service wso2ei start

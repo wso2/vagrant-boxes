@@ -31,11 +31,11 @@ else
   PASSWORD = ""
 end
 
-FILES_PATH = "./files/"
+FILES_PATH = "./vagrant-files/"
 JDK_ARCHIVE = "jdk-8u181-linux-x64.tar.gz"
 MYSQL_CONNECTOR = "mysql-connector-java-5.1.47-bin.jar"
 WUM_ARCHIVE = "wum-3.0.1-linux-x64.tar.gz"
-DEFAULT_MOUNT = "/home/vagrant/"
+DEFAULT_MOUNT = "/tmp/"
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -85,10 +85,6 @@ Vagrant.configure("2") do |config|
       if box['resources']
         server_config.vm.provision "file", source: FILES_PATH + MYSQL_CONNECTOR, destination: DEFAULT_MOUNT + MYSQL_CONNECTOR
         server_config.vm.provision "file", source: FILES_PATH + WUM_ARCHIVE, destination: DEFAULT_MOUNT + WUM_ARCHIVE
-        box['resources'].each do |resource|
-          source = FILES_PATH + resource
-          server_config.vm.provision "file", source: source, destination: DEFAULT_MOUNT + resource
-        end
       end
       # run the provisioner to get the latest pack
       if box['provisioner_script_args']
@@ -98,7 +94,14 @@ Vagrant.configure("2") do |config|
       else
         server_config.vm.provision "shell", path: box["provisioner_script"]
       end
-    end
+
+      if box['output_box'] == "wso2ei"
+        config.vm.provision "ansible" do |ansible|
+          ansible.playbook = "ansible/wso2ei/playbook-wso2ei.yml"
+        end
+      end
+
+    end   
   end
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "ansible/playbook-jdk.yml"
