@@ -108,14 +108,3 @@ find /var/log -type f | while read f; do echo -ne '' > $f; done;
 
 # clear the bash history and exit
 cat /dev/null > ${WORKING_DIRECTORY}/.bash_history && history -c
-
-# install unzip
-sudo apt-get -y install zip
-
-# unzip wso2ei-6.2.0.zip to /opt/app
-mkdir /opt/app
-sudo unzip -o -d /opt/app /home/vagrant/wso2ei-6.2.0.zip
-sudo chown -R wso2:wso2 /opt/app/wso2ei-6.2.0
-
-# add wso2 user
-sudo useradd wso2 -p wso2

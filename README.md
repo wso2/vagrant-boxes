@@ -74,7 +74,7 @@ boxes:
       - 8280
       - 8243
     resources:
-      - wso2am-2.2.0.zip
+      - wso2am-2.1.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2am
