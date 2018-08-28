@@ -27,4 +27,4 @@ output/*.box
 build.sh
 box_definitions.rb
 .project
-.retry
+*.retry
