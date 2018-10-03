@@ -24,5 +24,3 @@ hs_err_pid*
 .vagrant/
 .idea/
 output/*.box
-build.sh
-box_definitions.rb

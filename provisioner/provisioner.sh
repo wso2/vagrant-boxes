@@ -25,7 +25,7 @@ USERNAME=$3
 PASSWORD=$4
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}.zip
 WSO2_SERVER_UPDATED_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}.*.zip
-WUM_ARCHIVE=wum-2.0-linux-x64.tar.gz
+WUM_ARCHIVE=wum-3.0.1-linux-x64.tar.gz
 WORKING_DIRECTORY=/home/vagrant
 WUM_HOME=/usr/local/
 WUM_PATH='PATH=$PATH:/usr/local/wum/bin'
@@ -58,13 +58,13 @@ export WUM_PATH
 echo "Getting the ${WSO2_SERVER}-${WSO2_SERVER_VERSION} latest pack."
 wum init -u ${USERNAME} -p ${PASSWORD}
 wum add --file ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
-wum update
+wum update ${WSO2_SERVER}-${WSO2_SERVER_VERSION}
 
 if [ ! - f ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ]; then
   echo "No updated pack. Use the GA pack instead."
 else
   echo "moving product pack to ${WORKING_DIRECTORY}"
-  mv ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
+  mv ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_PACK} ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 fi
 
 echo "removing common wum user credentails"
@@ -74,7 +74,7 @@ sed -i "s/accesstoken:.*/accesstoken:/" /root/.wum-wso2/config.yaml
 echo "wum credentials and app keys removed Successfully"
 
 echo "Removing unnecessary files."
-rm -rf /root/.wum-wso2/updates
+rm -rf /root/.wum3/updates
 rm -rf ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_PACK}
 rm -rf ${WUM_ARCHIVE}
 rm -rf /tmp/wum*
