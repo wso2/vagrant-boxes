@@ -27,14 +27,14 @@ if ARGV[0] == 'up'
   print "\n"
 else
   # initializing USERNAME and PASSWORD
-  USERNAME = ""
-  PASSWORD = ""
+    USERNAME = ""
+    PASSWORD = ""
 end
 
 FILES_PATH = "./files/"
 JDK_ARCHIVE = "jdk-8u144-linux-x64.tar.gz"
 MYSQL_CONNECTOR = "mysql-connector-java-5.1.45-bin.jar"
-WUM_ARCHIVE = "wum-2.0-linux-x64.tar.gz"
+WUM_ARCHIVE = "wum-3.0.1-linux-x64.tar.gz"
 DEFAULT_MOUNT = "/home/vagrant/"
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
