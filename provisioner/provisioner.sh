@@ -24,12 +24,12 @@ WSO2_SERVER_VERSION=$2
 USERNAME=$3
 PASSWORD=$4
 WSO2_SERVER_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}.zip
-WSO2_SERVER_UPDATED_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}.*.zip
+WSO2_SERVER_UPDATED_PACK=${WSO2_SERVER}-${WSO2_SERVER_VERSION}*.full.zip
 WUM_ARCHIVE=wum-3.0.1-linux-x64.tar.gz
 WORKING_DIRECTORY=/home/vagrant
 WUM_HOME=/usr/local/
 WUM_PATH='PATH=$PATH:/usr/local/wum/bin'
-WUM_PRODUCT_LOCATION=/root/.wum-wso2/products/${WSO2_SERVER}/${WSO2_SERVER_VERSION}
+WUM_PRODUCT_LOCATION=/root/.wum3/products/${WSO2_SERVER}/${WSO2_SERVER_VERSION}
 
 # operate in anti-fronted mode with no user interaction
 export DEBIAN_FRONTEND=noninteractive
@@ -60,22 +60,22 @@ wum init -u ${USERNAME} -p ${PASSWORD}
 wum add --file ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 wum update ${WSO2_SERVER}-${WSO2_SERVER_VERSION}
 
-if [ ! - f ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_UPDATED_PACK} ]; then
+if [ ! -f ${WUM_PRODUCT_LOCATION}/full/${WSO2_SERVER_UPDATED_PACK} ]; then
   echo "No updated pack. Use the GA pack instead."
 else
-  echo "moving product pack to ${WORKING_DIRECTORY}"
-  mv ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_PACK} ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
+  echo "moving updated product pack to ${WORKING_DIRECTORY}"
+  mv ${WUM_PRODUCT_LOCATION}/full/${WSO2_SERVER_UPDATED_PACK} ${WORKING_DIRECTORY}/${WSO2_SERVER_PACK}
 fi
 
 echo "removing common wum user credentails"
-sed -i "s/username:.*/username:/" /root/.wum-wso2/config.yaml
-sed -i "s/refreshtoken:.*/refreshtoken:/" /root/.wum-wso2/config.yaml
-sed -i "s/accesstoken:.*/accesstoken:/" /root/.wum-wso2/config.yaml
+sed -i "s/username:.*/username:/" /root/.wum3/config.yaml
+sed -i "s/refreshtoken:.*/refreshtoken:/" /root/.wum3/config.yaml
+sed -i "s/accesstoken:.*/accesstoken:/" /root/.wum3/config.yaml
 echo "wum credentials and app keys removed Successfully"
 
 echo "Removing unnecessary files."
 rm -rf /root/.wum3/updates
-rm -rf ${WUM_PRODUCT_LOCATION}/${WSO2_SERVER_PACK}
+rm -rf ${WUM_PRODUCT_LOCATION}/
 rm -rf ${WUM_ARCHIVE}
 rm -rf /tmp/wum*
 ls -lh
