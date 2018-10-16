@@ -37,7 +37,7 @@ echo debconf mysql-server/root_password_again password $DB_PASSWORD | \
 apt-get update
 
 # install mysql
-apt-get -y install mysql-server
+apt-get -y install mysql-server-5.7
 
 # set the bind address from loopback address to all IPv4 addresses of the host
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mysql/my.cnf
