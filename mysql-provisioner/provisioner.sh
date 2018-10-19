@@ -41,9 +41,10 @@ apt-get -y install mysql-server-5.7
 
 # set the bind address from loopback address to all IPv4 addresses of the host
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mysql/my.cnf
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
 
 # restart the MySQL server
-service mysql restart
+systemctl restart mysql.service
 
 # remove the APT cache
 apt-get clean
