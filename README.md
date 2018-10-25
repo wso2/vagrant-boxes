@@ -62,12 +62,12 @@ WSO2 API Manager 2.6.0
 boxes:
   -
     output_box: mysql
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.3
     provisioner_script: mysql-provisioner/provisioner.sh
   -
     output_box: wso2am
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.4
     ports:
       - 9443
@@ -81,7 +81,7 @@ boxes:
       - version: 2.6.0
   -
     output_box: wso2am-analytics
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.5
     resources:
       - wso2am-analytics-2.6.0.zip
@@ -91,7 +91,7 @@ boxes:
       - version: 2.6.0
   -
     output_box: wso2is-as-km
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.6
     resources:
       - wso2is-km-5.7.0.zip
@@ -107,12 +107,12 @@ WSO2 Enterprise Integrator 6.4.0
 boxes:
   -
     output_box: mysql
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.3
     provisioner_script: mysql-provisioner/provisioner.sh
   -
     output_box: wso2ei
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.4
     ports:
       - 9444
@@ -130,12 +130,12 @@ WSO2 Identity Server 5.7.0
 boxes:
   -
     output_box: mysql
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.3
     provisioner_script: mysql-provisioner/provisioner.sh
   -
     output_box: wso2is
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.4
     ports:
       - 9443
@@ -147,7 +147,7 @@ boxes:
       - version: 5.7.0
   -
     output_box: wso2is-analytics
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.5
     ports:
       - 9444
@@ -164,12 +164,12 @@ Stream Processor 4.3.0
 boxes:
   -
     output_box: mysql
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.3
     provisioner_script: mysql-provisioner/provisioner.sh
   -
     output_box: wso2sp
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.4
     resources:
       - wso2sp-4.3.0.zip
@@ -184,12 +184,12 @@ IoT Server 3.3.0
 boxes:
   -
     output_box: mysql
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.3
     provisioner_script: mysql-provisioner/provisioner.sh
   -
     output_box: wso2iot
-    base_box: ubuntu/trusty64
+    base_box: ubuntu/bionic64
     ip: 172.28.128.5
     ports:
       - 9443

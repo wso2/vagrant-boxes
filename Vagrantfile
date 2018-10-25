@@ -33,7 +33,7 @@ end
 
 FILES_PATH = "./files/"
 JDK_ARCHIVE = "jdk-8u144-linux-x64.tar.gz"
-MYSQL_CONNECTOR = "mysql-connector-java-5.1.45-bin.jar"
+MYSQL_CONNECTOR = "mysql-connector-java-8.0.12.jar"
 WUM_ARCHIVE = "wum-3.0.1-linux-x64.tar.gz"
 DEFAULT_MOUNT = "/home/vagrant/"
 
