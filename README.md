@@ -31,21 +31,17 @@ The local copy of the `vagrant-boxes` directory will be referred to as `VAGARNT-
 
       [WSO2 API Manager 2.6.0](https://wso2.com/api-management/#download).
 
-   iii. WSO2 Enterprise Integrator 6.4.0
+   iii. WSO2 Enterprise Integrator 6.5.0
 
-      [WSO2 Enterprise Integrator 6.4.0](https://wso2.com/integration#download).
+      [WSO2 Enterprise Integrator 6.5.0](https://wso2.com/integration#download).
 
-   iv. WSO2 Identity Server 5.7.0
+   iv. WSO2 Identity Server 5.8.0
 
-      [WSO2 Identity Server 5.7.0](https://wso2.com/identity-and-access-management#download).
+      [WSO2 Identity Server 5.8.0](https://wso2.com/identity-and-access-management#download).
 
-   v. Stream Processor 4.3.0
+   v. Stream Processor 4.4.0
 
-      [WSO2 Stream Processor 4.3.0](https://wso2.com/analytics#download).
-
-   vi. IoT Server 3.3.0
-
-      [WSO2 IoT Server 3.3.0](https://wso2.com/iot#download).
+      [WSO2 Stream Processor 4.4.0](https://wso2.com/analytics#download).
 
    vii. Copy them to the following path
 
@@ -94,14 +90,14 @@ boxes:
     base_box: ubuntu/bionic64
     ip: 172.28.128.6
     resources:
-      - wso2is-km-5.7.0.zip
+      - wso2is-km-5.8.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2is-as-km
-      - version: 5.7.0
+      - version: 5.8.0
 
 ```
-WSO2 Enterprise Integrator 6.4.0
+WSO2 Enterprise Integrator 6.5.0
 ```
 ---
 boxes:
@@ -117,14 +113,14 @@ boxes:
     ports:
       - 9444
     resources:
-      - wso2ei-6.4.0.zip
+      - wso2ei-6.5.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2ei
-      - version: 6.4.0
+      - version: 6.5.0
 
 ```
-WSO2 Identity Server 5.7.0
+WSO2 Identity Server 5.8.0
 ```
 ---
 boxes:
@@ -140,11 +136,11 @@ boxes:
     ports:
       - 9443
     resources:
-      - wso2is-5.7.0.zip
+      - wso2is-5.8.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2is
-      - version: 5.7.0
+      - version: 5.8.0
   -
     output_box: wso2is-analytics
     base_box: ubuntu/bionic64
@@ -152,13 +148,13 @@ boxes:
     ports:
       - 9444
     resources:
-      - wso2is-analytics-5.7.0.zip
+      - wso2is-analytics-5.8.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2is-analytics
-      - version: 5.7.0
+      - version: 5.8.0
 ```
-Stream Processor 4.3.0
+Stream Processor 4.4.0
 ```
 ---
 boxes:
@@ -172,33 +168,11 @@ boxes:
     base_box: ubuntu/bionic64
     ip: 172.28.128.4
     resources:
-      - wso2sp-4.3.0.zip
+      - wso2sp-4.4.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2sp
-      - version: 4.3.0
-```
-IoT Server 3.3.0
-```
----
-boxes:
-  -
-    output_box: mysql
-    base_box: ubuntu/bionic64
-    ip: 172.28.128.3
-    provisioner_script: mysql-provisioner/provisioner.sh
-  -
-    output_box: wso2iot
-    base_box: ubuntu/bionic64
-    ip: 172.28.128.5
-    ports:
-      - 9443
-    resources:
-      - wso2iot-3.3.0.zip
-    provisioner_script: provisioner/provisioner.sh
-    provisioner_script_args:
-      - server: wso2iot
-      - version: 3.3.0
+      - version: 4.4.0
 ```
 
 4. Run the Vagrantfile.
