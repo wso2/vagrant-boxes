@@ -28,6 +28,5 @@ for box in ${OUTPUT}
 do
     vagrant up $box
     vagrant package $box --output output/$box.box
-    vagrant box add $box output/$box.box
     vagrant destroy $box -f
 done
