@@ -62,11 +62,11 @@ boxes:
      ports:
        - 9443
      resources:
-       - wso2is-5.8.0.zip
+       - wso2is-5.9.0.zip
      provisioner_script: provisioner/provisioner.sh
      provisioner_script_args:
        - server: wso2is
-       - version: 5.8.0
+       - version: 5.9.0
   -
     output_box: wso2is-analytics
     base_box: ubuntu/bionic64
