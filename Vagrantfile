@@ -34,7 +34,7 @@ end
 FILES_PATH = "./files/"
 JDK_ARCHIVE = "jdk-8u144-linux-x64.tar.gz"
 MYSQL_CONNECTOR = "mysql-connector-java-8.0.12.jar"
-WUM_ARCHIVE = "wum-3.0.5-linux-x64.tar.gz"
+WUM_ARCHIVE = "wum-3.0.6-linux-x64.tar.gz"
 DEFAULT_MOUNT = "/home/vagrant/"
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
