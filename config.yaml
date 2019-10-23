@@ -28,23 +28,23 @@ boxes:
       - 8280
       - 8243
     resources:
-      - wso2am-2.6.0.zip
+      - wso2am-3.0.0-beta.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2am
-      - version: 2.6.0
+      - version: 3.0.0-beta
   -
     output_box: wso2am-analytics
     base_box: ubuntu/bionic64
     ip: 172.28.128.5
     resources:
-      - wso2am-analytics-2.6.0.zip
+      - wso2am-analytics-3.0.0-beta.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2am-analytics
-      - version: 2.6.0
+      - version: 3.0.0-beta
   -
-    output_box: wso2ei
+    output_box: wso2eic
     base_box: ubuntu/bionic64
     ip: 172.28.128.4
     ports:
