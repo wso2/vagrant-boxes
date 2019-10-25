@@ -84,11 +84,11 @@ boxes:
     base_box: ubuntu/bionic64
     ip: 172.28.128.6
     resources:
-      - wso2is-km-5.7.0.zip
+      - wso2is-km-5.9.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2is-km
-      - version: 5.7.0
+      - version: 5.9.0
   -
     output_box: wso2sp
     base_box: ubuntu/bionic64
