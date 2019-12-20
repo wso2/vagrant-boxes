@@ -31,9 +31,9 @@ The local copy of the `vagrant-boxes` directory will be referred to as `VAGARNT-
 
       [WSO2 API Manager 2.6.0](https://wso2.com/api-management/#download).
 
-   iii. WSO2 Enterprise Integrator 6.5.0
+   iii. WSO2 Enterprise Integrator 6.6.0
 
-      [WSO2 Enterprise Integrator 6.5.0](https://wso2.com/integration#download).
+      [WSO2 Enterprise Integrator 6.6.0](https://wso2.com/integration#download).
 
    iv. WSO2 Identity Server 5.8.0
 
@@ -97,7 +97,7 @@ boxes:
       - version: 5.8.0
 
 ```
-WSO2 Enterprise Integrator 6.5.0
+WSO2 Enterprise Integrator 6.6.0
 ```
 ---
 boxes:
@@ -113,11 +113,11 @@ boxes:
     ports:
       - 9444
     resources:
-      - wso2ei-6.5.0.zip
+      - wso2ei-6.6.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2ei
-      - version: 6.5.0
+      - version: 6.6.0
 
 ```
 WSO2 Identity Server 5.8.0
