@@ -27,9 +27,9 @@ The local copy of the `vagrant-boxes` directory will be referred to as `VAGARNT-
 
       [JDK 8u144-linux-x64.tar](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and [WSO2 Update Manager](https://wso2.com/wum/download).
 
-   ii. WSO2 API Manager 2.6.0
+   ii. WSO2 API Manager 3.1.0
 
-      [WSO2 API Manager 2.6.0](https://wso2.com/api-management/#download).
+      [WSO2 API Manager 3.1.0](https://wso2.com/api-management/#download).
 
    iii. WSO2 Enterprise Integrator 6.6.0
 
@@ -52,7 +52,7 @@ Note: Adding WSO2 Update Manager is optional. Read more about [WSO2 Update Manag
 ```
 3. Edit the config.yaml as required (Comment out the unnecessary box entries).
 
-WSO2 API Manager 2.6.0
+WSO2 API Manager 3.1.0
 ```
 ---
 boxes:
@@ -70,21 +70,21 @@ boxes:
       - 8280
       - 8243
     resources:
-      - wso2am-2.6.0.zip
+      - wso2am-3.1.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2am
-      - version: 2.6.0
+      - version: 3.1.0
   -
     output_box: wso2am-analytics
     base_box: ubuntu/bionic64
     ip: 172.28.128.5
     resources:
-      - wso2am-analytics-2.6.0.zip
+      - wso2am-analytics-3.0.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2am-analytics
-      - version: 2.6.0
+      - version: 3.0.0
   -
     output_box: wso2is-as-km
     base_box: ubuntu/bionic64
