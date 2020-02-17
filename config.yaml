@@ -28,11 +28,11 @@ boxes:
       - 8280
       - 8243
     resources:
-      - wso2am-3.0.0.zip
+      - wso2am-3.1.0.zip
     provisioner_script: provisioner/provisioner.sh
     provisioner_script_args:
       - server: wso2am
-      - version: 3.0.0
+      - version: 3.1.0
   -
     output_box: wso2am-analytics
     base_box: ubuntu/bionic64
